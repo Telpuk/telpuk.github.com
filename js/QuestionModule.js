@@ -129,9 +129,9 @@ QuestionModule.prototype.setWrongContent = function () {
     this.$wrongContent.html('<p class="statisticsWrong">Вы ответили не правильно!</p>' +
         '<p class="statisticsRight">Правильный ответ:</p>' +
         '<p>' + quizData[this.getIndexActiveTest()]
-                                        .questions[this.getActiveQuestionIndex()]
-                                        .answers[quizData[this.getIndexActiveTest()]
-                                        .questions[this.getActiveQuestionIndex()].right - 1] +
+        .questions[this.getActiveQuestionIndex()]
+        .answers[quizData[this.getIndexActiveTest()]
+        .questions[this.getActiveQuestionIndex()].right - 1] +
         '</p>');
 };
 
@@ -295,24 +295,32 @@ QuestionModule.prototype.buildQuestionIFexit = function (objParseModule, objStat
             quizData[objParseModule.getTestId()].questions[objParseModule.getAnsweredWrongQuestion()[id]].answeredQuestion = true;
         }
 
-        this.setCountAnsweredQuestion(objParseModule.getAnsweredRightQuestion().length + objParseModule.getAnsweredWrongQuestion().length);
-        this.setIndexActiveTest(objParseModule.getTestId());
+        if((objParseModule.getAnsweredWrongQuestion().length +  objParseModule.getAnsweredRightQuestion().length) !== this.getCountQuestion()){
+            this.setCountAnsweredQuestion(objParseModule.getAnsweredRightQuestion().length + objParseModule.getAnsweredWrongQuestion().length);
+            this.setIndexActiveTest(objParseModule.getTestId());
 
-        objStatistics.changeRightQuestions(objParseModule.getAnsweredRightQuestion().length);
-        objStatistics.changeWrongQuestions(objParseModule.getAnsweredWrongQuestion().length);
-        objStatistics.changeActiveQuestion(objParseModule.getQuestionID());
-        objStatistics.changeCountQuestion(this.getCountQuestion());
+            objStatistics.changeRightQuestions(objParseModule.getAnsweredRightQuestion().length);
+            objStatistics.changeWrongQuestions(objParseModule.getAnsweredWrongQuestion().length);
+            objStatistics.changeActiveQuestion(objParseModule.getQuestionID());
+            objStatistics.changeCountQuestion(this.getCountQuestion());
 
-        this.setActiveQuestionIndex(objParseModule.getQuestionID());
+            this.setActiveQuestionIndex(objParseModule.getQuestionID());
 
-        this.buildQuestion();
+            this.buildQuestion();
 
-        this.QuizzApp.objRouter.checkPassedQuestion(this.getIndexActiveTest(), this.getActiveQuestionIndex());
+            this.QuizzApp.objRouter.checkPassedQuestion(this.getIndexActiveTest(), this.getActiveQuestionIndex());
 
 
-        this.$contentQuestions.show();
-        this.$testList.hide();
-
+            this.$contentQuestions.show();
+            this.$testList.hide();
+        }else{
+            Utils.resetFlagsANDanswers(this);
+            Utils.JSONppdLocalStorageANDRightdWrongReset();
+            Utils.JSONppdLocalStorageReset();
+            this.setFlagPassedTestLocalStorage(objParseModule);
+            this.$contentQuestions.hide();
+            this.$testList.show();
+        }
     }else{
         this.$contentQuestions.hide();
         this.$testList.show();
@@ -328,7 +336,7 @@ QuestionModule.prototype.resetTest = function () {
 
 QuestionModule.prototype.setFlagPassedTestLocalStorage = function (objParseModule) {
     objParseModule.parseStorage();
-    objParseModule.setPassedTests(this.indexActiveTest);
+    objParseModule.setPassedTests(this.getIndexActiveTest());
     objParseModule.stringifyStorage();
 };
 
