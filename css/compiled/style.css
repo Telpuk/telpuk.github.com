@@ -309,6 +309,7 @@ footer {
 }
 .ajaxLoader {
   background-color: #ffffff;
+  opacity: 1;
   width: 100%;
   height: 100%;
   position: fixed;
