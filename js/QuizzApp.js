@@ -31,6 +31,8 @@ $(function($){
 
             self.objQuestion = new QuestionModule($wrapper, self, self.quizData);
 
+            self.objQuestion.hiddenAjaxLoader();
+
             self.objQuestion.buildTestWidget();
 
             self.objStatistics = new Statistics($wrapper);

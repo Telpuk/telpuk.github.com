@@ -10,6 +10,8 @@ function QuestionModule(appWrapper, QuizzApp, quizData) {
 
     this.$widget = $('.widget', this.$appWrapper);
 
+    this.$ajaxLoader = $('.ajaxLoader', this.$appWrapper);
+
     this.$contentQuestions = $('.contentQuestions', this.$appWrapper);
     this.$contentQuestion = $('.contentQuestion', this.$appWrapper);
 
@@ -34,6 +36,10 @@ QuestionModule.prototype.setIndexActiveTest = function (indexActive) {
     this.QuizzApp.objParseModule.setTestId(indexActive);
     this.QuizzApp.objParseModule.stringifyStorage();
 
+};
+
+QuestionModule.prototype.hiddenAjaxLoader = function(){
+    this.$ajaxLoader.hide();
 };
 
 QuestionModule.prototype.setCountAnsweredQuestion = function (countAnsweredQuestion) {
