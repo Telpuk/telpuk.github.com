@@ -260,6 +260,8 @@ QuestionModule.prototype.buildTestWidget = function () {
         countRight: 0,
         countWrong: 0
     }));
+
+    this.$widget.show();
 };
 
 QuestionModule.prototype.createListTest = function () {

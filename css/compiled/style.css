@@ -360,6 +360,7 @@ div.testList header p {
   display: inline-block;
 }
 aside.widget header {
+  display: none;
   padding: 1px;
   text-align: center;
   background-color: #2c3e50;
