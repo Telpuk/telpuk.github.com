@@ -231,6 +231,7 @@ ul {
   color: red;
 }
 .widget {
+  display: none;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), -23px 0 20px -23px rgba(0, 0, 0, 0.8), 23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   background-color: #f5f5f5;
   padding: 8px;
@@ -360,7 +361,6 @@ div.testList header p {
   display: inline-block;
 }
 aside.widget header {
-  display: none;
   padding: 1px;
   text-align: center;
   background-color: #2c3e50;
