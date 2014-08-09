@@ -117,8 +117,48 @@ html {
   padding: 0;
 }
 /* reset styles */
+@font-face {
+  font-family: 'PTSans';
+  src: url('fonts/PTSansRegular.eot');
+  src: url('fonts/PTSansRegular.eot?#iefix') format('embedded-opentype'), url('fonts/PTSansRegular.woff') format('woff'), url('fonts/PTSansRegular.ttf') format('truetype'), url('fonts/PTSansRegular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PTSans';
+  src: url('fonts/PTSansItalic.eot');
+  src: url('fonts/PTSansItalic.eot?#iefix') format('embedded-opentype'), url('fonts/PTSansItalic.woff') format('woff'), url('fonts/PTSansItalic.ttf') format('truetype'), url('fonts/PTSansItalic.svg') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PTSans';
+  src: url('fonts/PTSansBold.eot');
+  src: url('fonts/PTSansBold.eot?#iefix') format('embedded-opentype'), url('fonts/PTSansBold.woff') format('woff'), url('fonts/PTSansBold.ttf') format('truetype'), url('fonts/PTSansBold.svg') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PTSans';
+  src: url('fonts/PTSansBoldItalic.eot');
+  src: url('fonts/PTSansBoldItalic.eot?#iefix') format('embedded-opentype'), url('fonts/PTSansBoldItalic.woff') format('woff'), url('fonts/PTSansBoldItalic.ttf') format('truetype'), url('fonts/PTSansBoldItalic.svg') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-family: PTSans, Arial, sans-serif;
+  font-size: 62,5%;
+  background: #e1eefd;
+}
 body {
   width: 75%;
+  min-width: 1100px;
+  max-width: 1200px;
   height: 100%;
   margin: 30px auto;
   padding: 50px ;
@@ -127,19 +167,24 @@ body {
   box-shadow: 0px 5px 10px #1c1c1c;
   font-family: sans-serif;
   font-size: 16px;
+  box-shadow: 0 0 15px 5px rgba(44, 82, 100, 0.75);
 }
 .testList {
   margin: 0 auto;
   text-align: center;
 }
 .answer {
+  overflow: auto;
   cursor: pointer;
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid #2c3e50;
+  border: 5px ridge #dddddd;
 }
 .answer:hover {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), -23px 0 20px -23px rgba(0, 0, 0, 0.8), 23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.contentQuestions {
+  overflow: auto;
 }
 h1.skipAnswerButton {
   margin-top: 10px;
@@ -178,10 +223,12 @@ h1.skipAnswerButton:active {
   border-radius: 10px;
 }
 .countQuestions {
+  margin-right: 30px;
   float: right;
   font-size: 1.4em;
 }
 .activeQuestions {
+  margin-right: 30px;
   float: right;
   font-size: 1.4em;
 }
@@ -238,23 +285,29 @@ ul {
   padding: 34px;
 }
 .right {
+  margin-right: 30px;
   float: right;
   font-size: 1.4em;
   color: green;
 }
 .wrong {
+  margin-right: 30px;
   float: right;
   font-size: 1.4em;
   color: red;
 }
 .widget {
   display: none;
+  overflow: auto;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), -23px 0 20px -23px rgba(0, 0, 0, 0.8), 23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   background-color: #f5f5f5;
   padding: 8px;
   width: 20%;
   position: relative;
   float: right;
+}
+.widget p {
+  margin-left: 10px;
 }
 p.statistics {
   padding: 5px;
@@ -316,7 +369,10 @@ h1.repeat:active {
   text-align: center;
 }
 footer {
-  margin-top: 20px;
+  clear: both;
+  padding: 5px;
+  border-top: black  solid 3px;
+  margin-top: 90px;
   width: 100%;
 }
 .wrongContent {
@@ -382,16 +438,19 @@ aside.widget header {
   color: white;
 }
 .exitTest {
+  cursor: pointer;
+  font-weight: bold;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), -23px 0 20px -23px rgba(0, 0, 0, 0.8), 23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   text-align: center;
-  cursor: pointer;
-  color: blue;
+  color: #ffffff;
   padding: 1px;
   background-color: #dddddd;
-  border: 1px solid blue;
+  border: 4px outset #ffffff;
   margin-top: 25%;
 }
 .exitTest:hover {
+  cursor: pointer;
+  border: 4px inset #ffffff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), -23px 0 20px -23px rgba(0, 0, 0, 0.8), 23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 .questions {

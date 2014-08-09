@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ППД</title>
+    <title>PDD</title>
     <meta charset="UTF-8">
     <link href="css/compiled/style.css" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="img/ppd.ico" />
-
-    <script src="js/vendor/requirejs/require.js" data-main="js/main"></script>
+    <link rel="shortcut icon" href="img/ppd.ico"/>
 </head>
 <body>
 <div class='appWrapper'>
@@ -16,6 +14,7 @@
     <div class="testList">
         <header>
             <h1>Доступные тесты</h1>
+
             <p class="resetTestPassed">Сбросить тесты</p>
         </header>
         <section>
@@ -30,12 +29,14 @@
     </div>
     <div class="floatWindows">
         <div class='black'></div>
-        <div class='windowsWrong'><span class="closed">закрыть</span><div class="wrongContent"></div></div>
+        <div class='windowsWrong'><span class="closed">закрыть</span>
+            <div class="wrongContent"></div>
+        </div>
     </div>
     <footer>
-           <p>&copy; Тельпук Сергей</p>
+        <p>&copy; Тельпук Сергей</p>
     </footer>
 </div>
+<script src="vendor/requirejs/require.js" data-main="app/init"></script>
 </body>
 </html>
-
