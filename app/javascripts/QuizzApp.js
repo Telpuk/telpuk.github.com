@@ -1,13 +1,9 @@
-define(['LocalStorage', 'Question', 'Statistics', 'Router'],
-	function(LocalStorage, Question, Statistics ,Router){
+define(['LocalStorage', 'Question', 'Statistics', 'Router', 'Timer'],
+	function(LocalStorage, Question, Statistics ,Router, Timer){
 
 		"use strict"
 
-		function QuizzApp() {
-			if(!(this instanceof QuizzApp)){
-				return new QuizzApp();
-			}
-		}
+		function QuizzApp() { }
 
 		QuizzApp.prototype.setAnsweredQuestionFalse = function(){
 			_.each(this.quizData, function(num){
@@ -16,9 +12,18 @@ define(['LocalStorage', 'Question', 'Statistics', 'Router'],
 		};
 
 		QuizzApp.prototype.init = function () {
+
 			var self = this;
 
-			var $wrapper = $('.appWrapper');
+			self.$wrapper = $('.appWrapper');
+
+            self.objLocalStorage =  LocalStorage;
+
+            self.objQuestion =  Question;
+
+            self.objStatistics =  Statistics;
+
+            self.objRouter =  Router;
 
 
 			$.getJSON( 'app/json/quizData.json', function(data){
@@ -27,23 +32,21 @@ define(['LocalStorage', 'Question', 'Statistics', 'Router'],
 
 				self.setAnsweredQuestionFalse();
 
-				self.objLocalStorage = new LocalStorage();
-
-				self.objQuestion = new Question($wrapper, self, self.quizData);
+				self.objQuestion.setQuizData(data);
+				self.objQuestion.setObjQuizzApp(self);
+				self.objQuestion.setAppWrapper(self.$wrapper);
 
 				self.objQuestion.hiddenAjaxLoader();
 
-				self.objQuestion.buildTestWidget();
+				self.objQuestion.buildTestWidget(self);
 
-				self.objStatistics = new Statistics($wrapper);
 
-				self.objRouter = new Router(self.objQuestion, self.objLocalStorage, self.objStatistics, self.quizData);
+				self.objRouter.setQuizData(data);
+				self.objQuestion.createListTest(Router);
 
-				self.objQuestion.createListTest();
+				self.objQuestion.buildQuestionIFexit(LocalStorage, Statistics, Timer);
 
-				self.objQuestion.buildQuestionIFexit(self.objLocalStorage, self.objStatistics);
-
-				self.objQuestion.setFlagPassedTest(self.objLocalStorage);
+				self.objQuestion.setFlagPassedTest(LocalStorage);
 			});
 		};
 
